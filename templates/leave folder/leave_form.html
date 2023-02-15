@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{%block content%}
+<!-- 
+{%for message in messages%}
+<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="btn-close"
+    data-bs-dismiss="alert"></button>
+    {{message}}
+</div>
+{%endfor%} -->
+</br>
+<a href="{%url 'employee:userleave_list'%}" class="btn btn-primary" style="margin:0% 0% 0% 95%;">Back</a></br></br>
+<div>
+    <center>
+        <h2 class="alert alert-info"><u>LEAVE FORM</u></h2>
+    </center><br>
+    <form method="post" action="/userleave_form/">
+        {% csrf_token %}
+        <div class="container col-5">
+            <div class="row">
+
+                <div class="mb-3 ">
+                    <label for="designation" class="form-label"style="color: rgb(18, 20, 22);"><b>Employee Name:</b></label>
+                    <select name="E_name" id="E_name">
+                    {%for i in e_first_name%}
+                    <option value="{{i.first_name}}">{{i.first_name}}</option>
+                    {%endfor%}   
+                    </select> 
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="code" class="form-label" style="color: rgb(18, 20, 22);"><b>Start Date:</b></label>
+                    <input type="date" class="form-control" id="sdate" name="sdate" placeholder="Enter Your Start Date">
+                </div>
+
+                <div class="mb-3 ">
+                <label for="code" class="form-label" style="color: rgb(18, 20, 22);"><b>End Date:</b></label>
+                <input type="date" class="form-control" id="edate" name="edate" placeholder="Enter Your End Date">
+                </div>
+
+                <div class="mb-3 ">
+                <label for="code" class="form-label" style="color: rgb(18, 20, 22);"><b>Leave Type:</b></label>
+                <select name="ltype" id="ltype">
+                    {%for i in leave_name%}
+                    <option value="{{i.leave_name}}">{{i.leave_name}}</option>
+                    {%endfor%}   
+                </select>
+                </div>
+
+                <!-- <div class="mb-3 ">
+                <label for="designation" class="form-label"style="color: rgb(18, 20, 22);"><b>Status:</b></label>
+                    <select name="department" id="department">
+                        <option value="">Applied</option> 
+                        <option value="">Cancelled</option> 
+                        <option value="">Approved</option> 
+                        <option value="">Rejected</option>  
+                      </select>
+                </div> -->
+
+                
+        </div>
+
+
+        <center> <button type="submit" class="btn btn-primary">Submit</button></center>
+</div>
+
+</form>
+</div>
+{%endblock%}

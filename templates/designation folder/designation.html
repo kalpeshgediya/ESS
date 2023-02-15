@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%block content%}
+<!-- 
+{%for message in messages%}
+<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="btn-close"
+    data-bs-dismiss="alert"></button>
+    {{message}}
+</div>
+{%endfor%} -->
+</br>
+<a href="{%url 'employee:userdesignation_list'%}" class="btn btn-primary" style="margin:0% 0% 0% 95%;">Back</a></br></br>
+
+    <center>
+        <h2 class="alert alert-info"><u>DESIGNATION FORM</u></h2>
+    </center><br>
+    <form method="post" action="/userdesignation/">
+        {% csrf_token %}
+        <div class="container col-5">
+            <div class="row">
+                <div class="mb-3 ">
+                    <label for="name" class="form-label" style="color: rgb(18, 20, 22);"><b>Name:</b></label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Designation">     
+                </div>
+
+            </div>
+
+
+        <center> <button type="submit" class="btn btn-primary">Submit</button></center>
+</div>
+
+</form>
+
+{%endblock%}

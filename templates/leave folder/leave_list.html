@@ -1,0 +1,86 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif; 
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      text-align: left;
+      padding: 8px;
+      color: rgb(1, 1, 14);
+      font-size: large;
+    }
+
+    .list {
+      background-image: url('/static/image/dark2.webp');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    table, th, td {
+  border: 1px solid white;        
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #99cdf0;
+}
+  </style>
+</head>
+
+<body class="list">
+</br>
+<a href="{%url 'employee:userleave_form'%}" class="btn btn-primary" style="margin:0% 0% 0% 90%;">+Add Leave</a></br></br>
+
+    <center>
+        <h2 class="alert alert-danger"><u>LEAVE LIST</u></h2>
+    </center><br>
+    <div class="col-sm-4-COL-56" style="margin-left:0%;">
+  
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>Employee Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th> Leave Type</th>
+      <th>Approved/Rejected</th>
+
+
+    </tr>
+    {%for leave_list in data%}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{leave_list.employee_name}}</td>
+      <td>{{leave_list.start_date}}</td>
+      <td>{{leave_list.end_date}}</td>
+      <td>{{leave_list.leave_types}}</td>
+
+
+      
+      <td>{%if request.user.is_superuser %}
+        <form action="/approvrd_reject/{{leave_list.id}}/{{leave_list.start_date|date:'Y-m-d'}}" method="post">
+          {% csrf_token %}
+          <div class="container col-5">
+              <div class="row">
+                  <div class="mb-3 " style="color: brown;">
+                    <input type="submit" class="form-control"  name="Approve" value="Approve" >
+                    <input type="submit" class="form-control"  name="Rejecte" value="Rejecte" >
+                    </div></div></div>
+          </form>
+        {%else%}
+        <a class="btn btn-danger" href="/userleave_delete/{{leave_list.id}}">Cancelled</a>
+        {%endif%}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+  <br/>
+</body>
+{%endblock%}

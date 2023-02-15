@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+{%block content%}
+
+
+
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif; 
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      text-align: left;
+      padding: 8px;
+      color: rgb(1, 1, 14);
+      font-size: large;
+    }
+
+    .list {
+      background-image: url('/static/image/dark2.webp');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    table, th, td {
+  border: 1px solid white;        
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #99cdf0;
+}
+  </style>
+  </head>
+
+
+
+
+
+
+
+    <body class="list">
+
+    
+        <center>
+            <h2 class="alert alert-danger"><u>ATTENDENCE LIST</u></h2>
+        </center><br>
+      
+<table>
+    <tr>
+      <th>Employee Name</th>
+      <th>Date</th>
+      <th>Puch in</th>
+      <th>Puch out</th>
+      <th>Duration Time</th>
+  
+    </tr>
+    
+    {%for punch_in_out_list in punch_in_out%}
+    
+    <tr>
+      <td>{{punch_in_out_list.employee_name}}</td>
+      <td>{{punch_in_out_list.date}}</td>
+      <td>{{punch_in_out_list.punch_in}}</td>
+      <td>{{punch_in_out_list.punch_out}}</td>
+      <td>{{punch_in_out_list.duration}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+{%endblock%}

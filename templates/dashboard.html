@@ -1,0 +1,113 @@
+{%extends 'base.html'%}
+{%block content%}
+
+
+
+<head>
+    <style>
+        b {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 200%;
+            color: rgb(250, 100, 6);
+
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            text-align: left;
+            padding: 8px;
+            color: rgb(231, 231, 241);
+        }
+
+        .list {
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            background-color: #d49696;
+        }
+
+
+    </style>
+</head>
+
+
+<div class="">
+
+    <body>
+
+        {%if request.user.is_authenticated%}
+
+        <br><br>
+        <center><b>Welcome,
+                {{request.user.employee_user.first_name}} {{request.user.employee_user.last_name}}</b></center>
+
+        {%endif%}
+
+        <br><br>
+        {%if request.user.is_authenticated%}
+
+
+        <div class="container">
+            <center>
+                <ul>
+                    <form method="post" action="/userpuch_in/">
+                        {% csrf_token %}
+                        <button type="submit" id="punchin" class="btn btn-primary" value="puchin" name="puchin" ><a>Punch-in</a></button>
+                    </form>
+                </ul>
+            </center>
+            <center>
+                <ul>
+                    <form method="post" action="/userpuch_out/{{attendance_ids}}">
+                        {% csrf_token %}
+
+                    <button type="submit" id="punchout" class="btn btn-primary" value="puchout" name="puchout">Punch-out</button>
+                    </form>
+                </ul>
+            </center>
+        </div>
+
+
+
+        <br><br><br>
+        <div class="col-sm-4" style="margin-left:35%;">
+            <table class="table table-dark table-striped">
+                <tr>
+                    <th>Puch in</th>
+                    <th>Puch out</th>
+
+                </tr>
+                {%for punch_in_out_time_list in p_in%}
+                <tr>
+                    <td>{{punch_in_out_time_list.punch_in}}</td>
+                    <td>{{punch_in_out_time_list.punch_out}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {%endif%}
+        {{data}}
+
+
+    </body>
+</div>
+{%endblock%}

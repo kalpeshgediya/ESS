@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif; 
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      text-align: left;
+      padding: 8px;
+      color: rgb(1, 1, 14);
+      font-size: large;
+    }
+
+    .list {
+      background-image: url('/static/image/dark2.webp');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    table, th, td {
+  border: 1px solid white;        
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #99cdf0;
+}
+  </style>
+</head>
+
+<body class="list">
+</br>
+<a href="{%url 'employee:userleave_type'%}" class="btn btn-primary" style="margin:0% 0% 0% 90%;">+Add Leave Type</a></br></br>
+
+    <center>
+        <h2 class="alert alert-danger"><u>LEAVE TYPE LIST</u></h2>
+    </center><br>
+    <div class="col-sm-4" style="margin-left:35%;">
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>Leave Name</th>
+      <th>Max Leaves</th>
+      <th>Carry Forword</th>
+    </tr>
+
+    {%for e_type_list in data%}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{e_type_list.leave_name}}</td>
+      <td>{{e_type_list.max_leaves}}</td>
+      <td>{{e_type_list.get_carry_forword_display}}</td>
+    </tr> {%endfor%}
+
+    
+  
+  </table>
+  </div>
+  <br />
+</body>
+{%endblock%}

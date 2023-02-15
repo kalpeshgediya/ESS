@@ -1,0 +1,80 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif; 
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      text-align: left;
+      padding: 8px;
+      color: rgb(1, 1, 14);
+      font-size: large;
+    }
+
+    .list {
+      background-image: url('/static/image/dark2.webp');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    table, th, td {
+  border: 1px solid white;        
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #99cdf0;
+}
+  </style>
+</head>
+
+<body class="list">
+</br>
+{% if user.is_superuser %}
+<a href="{%url 'employee:useremployee_form'%}" class="btn btn-primary" style="margin:0% 0% 0% 90%;">+Add Employee</a></br></br>
+{%endif%}
+    <center>
+        <h2 class="alert alert-danger"><u>EMPLOYEE LIST</u></h2>
+    </center><br>
+    <div class="col-sm-4-COL-56" style="margin-left:0%;">
+  
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Dob</th>
+      <th>Address</th>
+      <th>Phone no</th>
+      <th>Email</th>
+      <th>Employee designation</th>
+      <th>Employee department</th>
+      <th>Access type</th>
+      <th>Reporting to</th>
+
+    </tr>
+    
+    <tr>
+      {%for e_list in data%}
+      <td>{{forloop.counter}}</td>
+      <td>{{e_list.first_name}} {{e_list.last_name}}</td>
+      <td>{{e_list.dob}}</td>
+      <td>{{e_list.address}}</td>
+      <td>{{e_list.phone_no}}</td>
+      <td>{{e_list.email}}</td>
+      <td>{{e_list.employee_designation}}</td>
+      <td>{{e_list.employee_department}}</td>
+      <td>{{e_list.get_acess_type_display}}</td>
+      <td>{{e_list.reporting_to.first_name}}</td>
+    </tr>
+    {% endfor %}
+  
+  </table>
+  </div>
+  <br />
+</body>
+{%endblock%}

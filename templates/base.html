@@ -1,0 +1,101 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <title>ESS POROJECT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+<style>
+  .index {
+      background-image: url('/static/image/200.jfif');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .card { 
+      background-image: url('/static/image/back.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .Dashboard,
+    .Designation {
+      background-image: url('/static/image/tree.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+</style>
+</head>
+
+
+<body>
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+      <a
+        href="https://www.google.com/search?q=india&source=lmns&bih=969&biw=1920&hl=en&sa=X&ved=2ahUKEwj567Xv3938AhXHiNgFHXKUB04Q_AUoAHoECAEQAA">
+        <img class="navbar-brand" src="/static/image/india.png" style="height: 50px; width: 50px; border-radius: 50%;"
+          class="rounded-circle"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'employee:userdashboard'%}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'employee:userdesignation_list'%}">Designation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'employee:userdepartment_list'%}">Department</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'employee:userleave_type_list'%}">Leave Type</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'employee:userleave_list'%}">Leave</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'employee:useremployee_list'%}">Employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'employee:user_attendence'%}">Attendence</a>
+          </li> 
+        </ul>
+
+        
+        <ul class="nav navbar-nav navbar-right">
+          {%if request.user.is_authenticated%}
+          <li><a class="nav-link" href="{%url 'employee:userlogout'%}"> LogOut</a></li>
+          {%else%}
+          <li><a class="nav-link" href="{%url 'employee:userlogin'%}">Login</a></li>
+          {%endif%}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+{%block content%}
+{%endblock%}
+
+
+
+
+</body>
+
+
+</html>

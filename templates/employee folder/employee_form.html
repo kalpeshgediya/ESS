@@ -1,0 +1,123 @@
+{%extends 'base.html'%}
+{%block content%}
+<!-- 
+{%for message in messages%}
+<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="btn-close"
+    data-bs-dismiss="alert"></button>
+    {{message}}
+</div>
+{%endfor%} -->
+</br>
+<a href="{%url 'employee:useremployee_list'%}" class="btn btn-primary" style="margin:0% 0% 0% 95%;">Back</a></br></br>
+<div>
+    <center>
+        <h2 class="alert alert-info"><u>EMPLOYEE FORM</u></h2>
+    </center><br>
+    <form method="post" action="/useremployee_form/">
+        {% csrf_token %}
+
+        <div class="container col-5">
+            <div class="row">
+                <div class="mb-3 ">
+                    <label for="firstname" class="form-label" style="color: rgb(18, 20, 22);"><b>firstname:</b></label>
+                    <input type="text" class="form-control" id="firstname" name="firstname"
+                        placeholder="Enter Firstname">
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="lastname" class="form-label" style="color: rgb(18, 20, 22);"><b>lastname:</b></label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Lastname">
+
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label" style="color: rgb(18, 20, 22);"><b>DOB:</b></label>
+                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter Date Of Birth">
+
+                </div>
+                <div class="mb-3">
+                    <label for="adress" class="form-label" style="color: rgb(18, 20, 22);"><b>Adress:</b></label>
+                    <textarea class="form-control" id="adress" name="adress" placeholder="Enter Adress"></textarea>
+
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label" style="color: rgb(18, 20, 22);"><b>email:</b></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+
+                    </div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="phoneno" class="form-label" style="color: rgb(18, 20, 22);"><b>Phone no:</b></label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone no">
+
+                </div>
+
+
+                <div class="mb-3 ">
+                    <label for="password" class="form-label" style="color: rgb(18, 20, 22);"><b>password:</b></label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Enter Password">
+
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="designation" class="form-label" style="color: rgb(18, 20, 22);"><b>Employee
+                            Designation:</b></label>
+                    <select name="designation" id="designation" class="form-control">
+                        {%for i in designation_var%}
+                        <option value="{{i.designation_name}}">{{i.designation_name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="designation" class="form-label" style="color: rgb(18, 20, 22);"><b>Employee
+                            Department:</b></label>
+                    <select name="department" id="department" class="form-control" >
+                        {%for i in department_var%}
+                        <option value="{{i.department_name}}">{{i.department_name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="mb-3 ">
+                    <label for="access_type" class="form-label" style="color: rgb(18, 20, 22);"><b>Access
+                            Type:</b></label></br>
+                    <input type="radio" id="Admin" name="access_type" value="Admin">
+                    <label for="access_type" class="form-label" style="color: rgb(18, 20, 22);">Admin</label>
+                    <input type="radio" id="Employee" name="access_type" value="Employee">
+                    <label for="access_type" class="form-label" style="color: rgb(18, 20, 22);">Employee</label>
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="designation" class="form-label" style="color: rgb(18, 20, 22);"><b>Reporting
+                            To:</b></label>
+                    <select name="reporting" id="reporting" class="form-control" >
+                        {%if first_name != null%}
+                        {%for i in first_name%}
+                        <option value="{{i.first_name}}">{{i.first_name}}</option>
+                        {%endfor%}
+                        {%endif%}
+                        <option value="None">None</option>
+                    </select>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+</div>
+
+</div>
+
+<center> <button type="submit" class="btn btn-primary">Submit</button></center>
+{{data}}
+</form>
+</br></br></br>
+
+
+
+{%endblock%}
